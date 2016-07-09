@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--suppress XmlUnboundNsPrefix -->
+<resources>
+    <!--Replace placeholder ID with your tracking ID-->
+    <!-- defined now in build.gradle-->
+    <string name="ga_trackingId" translatable="false">UA-67894719-3</string>
+
+    <!--Enable automatic activity tracking-->
+    <!--defined now in build.gradle-->
+    <bool name="ga_autoActivityTracking">true</bool>
+
+    <!-- The application name. Defaults to name specified for the application label
+    <string name="ga_appName">@string/</string>
+    -->
+    <!--Enable automatic exception tracking-->
+    <bool name="ga_reportUncaughtExceptions">true</bool>
+
+    <!--Tells Google Analytics to anonymize the information sent by the tracker objects by removing the last octet of the IP address prior to its storage. Note that this will slightly reduce the accuracy of geographic reporting. false by default.-->
+    <bool name="ga_anonymizeIp">true</bool>
+
+    <!-- The dispatching period in seconds when Google Play services is unavailable. The
+  default period is 1800 seconds or 30 minutes
+    <integer name="ga_dispatchPeriod">60</integer>-->
+
+    <integer name="ga_sessionTimeout">300</integer>
+
+    <!-- the Local LogLevel for Analytics
+    <string name="ga_logLevel">verbose</string> -->
+
+</resources>

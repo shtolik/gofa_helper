@@ -1,0 +1,32 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/container_for_clip_fragment"
+        android:name="ClipFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        tools:context=".GofaHelperActivity"
+        tools:ignore="MergeRootFrame" />
+
+    <FrameLayout
+        android:id="@+id/container_for_start_fragment"
+        android:name="StartFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".GofaHelperActivity"
+        tools:ignore="MergeRootFrame" />
+    <!--
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            ads:adSize="BANNER"
+            ads:adUnitId="@string/banner_ad_unit_id">
+        </com.google.android.gms.ads.AdView>
+    -->
+</LinearLayout>

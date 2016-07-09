@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest package="mobi.stolicus.app.gofa_helper"
+          xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- To access Google+ APIs: -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Include required permissions for Google Mobile Ads to run -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- to check what app is running when copying to buffer -->
+    <!--suppress DeprecatedClassUsageInspection -->
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS"
+                     xmlns:tools="http://schemas.android.com/tools"
+                     tools:ignore="ProtectedPermissions"/>
+
+    <!-- to allow starting app on boot -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <application
+        android:name="mobi.stolicus.apps.gofa_helper.GofaApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.4gofa">
+
+        <!-- This meta-data tag is required to use Google Play Services. -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity
+            android:name="mobi.stolicus.apps.gofa_helper.GofaHelperActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustResize|stateHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <!--
+                <category android:name="android.intent.category.BROWSABLE" />
+                let Gofa itself handle gofa:// links
+                                <data android:scheme="gofa" />
+                -->
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="mobi.stolicus.apps.gofa_helper.ConfigActivity"
+            android:label="@string/action_settings" />
+
+        <provider
+            android:name="mobi.stolicus.apps.gofa_helper.db.CupboardProvider"
+            android:authorities="mobi.stolicus.apps.gofa_helper.cupboard_provider"
+            android:exported="false" />
+
+        <service
+            android:name="mobi.stolicus.apps.gofa_helper.ClipboardMonitorService"
+            android:exported="false"
+            android:label="Clipboard Monitor for GoF:A links" />
+
+        <receiver android:name="mobi.stolicus.apps.gofa_helper.GofaHelperWidgetProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/gofa_helper_widget_info" />
+        </receiver>
+        <receiver
+            android:name="mobi.stolicus.apps.gofa_helper.BootReceiver"
+            android:authorities="${applicationId}.BootReceiver"
+            android:enabled="true"
+            android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+
+
+    </application>
+
+</manifest>

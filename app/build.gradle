@@ -1,0 +1,101 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+}
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "24.0.0"
+
+    defaultConfig {
+        applicationId "mobi.stolicus.apps.gofa_helper"
+        minSdkVersion 11
+        targetSdkVersion 11
+        versionCode 10
+        versionName "1.5"
+    }
+    signingConfigs {
+        release //will be defined lower from release.properties
+        debug {
+            storeFile file("keystores/debugkeys/debug.keystore")
+            keyAlias "androiddebugkey"
+            storePassword "android"
+            keyPassword "android"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        debug {
+            minifyEnabled false
+            debuggable true
+            signingConfig signingConfigs.release
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            updateOutputFileName(variant, output)
+        }
+    }
+}
+
+
+def props = new Properties()
+
+props.load(new FileInputStream(rootProject.file("release.properties")))
+android.signingConfigs.release.storeFile rootProject.file(props.keyStore)
+android.signingConfigs.release.storePassword props.keyStorePassword
+android.signingConfigs.release.keyAlias props.keyAlias
+android.signingConfigs.release.keyPassword props.keyAliasPassword
+
+
+def updateOutputFileName(variant, output) {
+    if (output.outputFile != null && output.outputFile.name.endsWith('.apk')) {
+        def apk = output.outputFile;
+        String app_name_final = "gofa_helper"
+        println "/updateOutputFileName/apk.name =" + apk.name + "; output.versionName=" + variant.versionName
+        def newName2 = app_name_final + "_" + variant.versionName + ".apk";
+        if (variant.buildType.name != "release") {
+            newName2 = newName2.replace("_a.apk", "_debug_a.apk");
+        }
+
+        println '/updateOutputFileName/newName2=' + newName2
+
+        output.outputFile = new File(apk.parentFile, newName2)
+        println '/updateOutputFileName/new output.outputFile=' + output.outputFile
+    } else {
+        //not updating non apk files
+        println '/updateOutputFileName/not updating non apk files of output.outputFile=' + output.outputFile
+    }
+}
+
+dependencies {
+//    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    testCompile 'junit:junit:4.12'
+    testCompile "org.mockito:mockito-core:1.9.5"
+
+    compile 'com.android.support:appcompat-v7:24.0.0'
+    compile 'com.android.support:support-v4:24.0.0'
+    compile 'com.google.android.gms:play-services-analytics:9.2.0'
+    compile 'nl.qbusict:cupboard:2.1.2'
+    compile 'com.noveogroup.android:android-logger:1.3.5'
+    compile 'org.apache.commons:commons-lang3:3.1'
+}

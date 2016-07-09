@@ -1,0 +1,80 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:context=".ConfigFragment">
+
+    <CheckBox
+        android:id="@+id/run_on_startup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="false"
+        android:text="@string/run_on_phone_startup" />
+
+    <CheckBox
+        android:id="@+id/observe_clipboard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="false"
+        android:text="@string/observe_clipboard" />
+
+    <CheckBox
+        android:id="@+id/open_on_single_copy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:checked="false"
+        android:text="@string/open_on_single_copy_text" />
+
+    <CheckBox
+        android:id="@+id/post_notification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:checked="false"
+        android:text="@string/post_notification_text" />
+
+    <CheckBox
+        android:id="@+id/keep_clipboard_history"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:checked="false"
+        android:text="@string/keep_clipboard_history" />
+
+    <CheckBox
+        android:id="@+id/open_on_double_copy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:checked="false"
+        android:text="@string/open_on_double_copy_text" />
+
+    <CheckBox
+        android:id="@+id/create_widget"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="false"
+        android:text="@string/create_home_screen_widget" />
+
+    <CheckBox
+        android:id="@+id/manual_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="false"
+        android:text="@string/manual_link" />
+
+        <CheckBox
+            android:id="@+id/google_analytics"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="@string/google_analytics"/>
+
+</LinearLayout>
+</ScrollView>
