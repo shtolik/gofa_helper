@@ -284,7 +284,9 @@ public class GofaHelperActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
+        int count = getSupportFragmentManager().getBackStackEntryCount();
         if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+            logger.trace("/onBackPressed/fragments in stack:" + count);
             getSupportFragmentManager().popBackStack();
             updateFragments();
         } else {

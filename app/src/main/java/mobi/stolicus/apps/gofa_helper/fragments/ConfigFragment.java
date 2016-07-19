@@ -269,10 +269,7 @@ public class ConfigFragment extends Fragment {
             editor.apply();
             if (cbOpenOnDoubleCopy != null)
                 cbOpenOnDoubleCopy.setEnabled(false);
-//            GofaHelperActivity.updateHome((ConfigActivity)getActivity(), false);
         } else {
-//            ((ConfigActivity) getActivity()).updateFragments();
-//            GofaHelperActivity.updateHome((ConfigActivity) getActivity(), true);
             if (cbOpenOnDoubleCopy != null)
                 cbOpenOnDoubleCopy.setEnabled(true);
         }
@@ -404,22 +401,16 @@ public class ConfigFragment extends Fragment {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_go_history) {
             if (checkShowingMainActivity()) {
-                openGofaActivity();
+                getActivity().finish();
             }
         } else if (id == android.R.id.home) {
             // Respond to the action bar's Up/Home button
 
             if (checkShowingMainActivity()) {
-                openGofaActivity();
+                getActivity().finish();
             }
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    private void openGofaActivity() {
-        Intent in = new Intent(getActivity(), GofaHelperActivity.class);
-        in.putExtra(GofaHelperActivity.START_FROM_CONFIG, true);
-        startActivity(in);
     }
 
     /**
